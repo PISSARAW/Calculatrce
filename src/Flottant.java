@@ -1,5 +1,5 @@
 public final class Flottant implements Nombre{
-    private final double x;
+    private final Double x;
 
     private Flottant(double y) {
         x = y;
@@ -52,7 +52,7 @@ public final class Flottant implements Nombre{
         try {
             if (n instanceof Flottant || n instanceof Entier) {
                 if (n instanceof Flottant)
-                    return Flottant.faire((this.x + ((Flottant) n).getX()));
+                    return Flottant.faire((this.x - ((Flottant) n).getX()));
             }
             else
                 throw new Exception();

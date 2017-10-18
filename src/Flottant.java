@@ -48,13 +48,17 @@ public final class Flottant implements Nombre{
      * @return
      */
     @Override
-    public Nombre moins(Nombre n) {
+     public Nombre moins(Nombre n) {
         try {
             if (n instanceof Flottant || n instanceof Entier) {
                 if (n instanceof Flottant)
                     return Flottant.faire((this.x - ((Flottant) n).getX()));
             }
             else
+            {
+             	return this.moins(Flottant.faire(((Entier)n).getX().doubleValue()));
+             	
+             }
                 throw new Exception();
         } catch (Exception e) {
             System.out.print("Opération incompatible");

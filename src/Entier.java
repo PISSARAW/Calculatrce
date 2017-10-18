@@ -1,4 +1,25 @@
 public final class Entier implements Nombre{
+    private final Long x;
+    private Entier (long y){
+        x=y;
+    }
+    public static Entier faire(long y){
+        Entier en =null;
+        en= new Entier(y);
+        return en;
+    }
+
+    @Override
+    public String toString() {
+        return ""+x;
+    }
+
+    public Long getX() {
+        return x;
+    }
+
+    
+   //************************ 
     /**
      * Additione deux nombres
      *
@@ -7,6 +28,21 @@ public final class Entier implements Nombre{
      */
     @Override
     public Nombre plus(Nombre n) {
+    	 try {
+             if ((n instanceof Entier)||( n instanceof Flottant)) {
+                 if(n instanceof Entier)
+                     return Entier.faire((this.x + ((Entier) n).getX()));
+                 else
+                 {
+                 	return Flottant.faire(this.getX().doubleValue()).plus(n);
+                 	
+                 }
+             }
+             throw new Exception();
+         }
+         catch (Exception e){
+             System.out.print("Operation incompatible");
+         }
         return null;
     }
 
@@ -16,8 +52,23 @@ public final class Entier implements Nombre{
      * @param n
      * @return
      */
-    @Override
+   @Override
     public Nombre moins(Nombre n) {
+        try {
+             if ((n instanceof Entier)||( n instanceof Flottant)) {
+                 if(n instanceof Entier)
+                     return Entier.faire((this.x - ((Entier) n).getX()));
+                 else
+                 {
+                 	return Flottant.faire(this.getX().doubleValue()).moins(n);
+                 	
+                 }
+             }
+             throw new Exception();
+         }
+         catch (Exception e){
+             System.out.print("Operation incompatible");
+         }
         return null;
     }
 
@@ -26,20 +77,52 @@ public final class Entier implements Nombre{
      *
      * @param n
      * @return
-     */
+   */  
     @Override
     public Nombre fois(Nombre n) {
+        try {
+             if ((n instanceof Entier)||( n instanceof Flottant)) {
+                 if(n instanceof Entier)
+                     return Entier.faire((this.x * ((Entier) n).getX()));
+                 else
+                 {
+                 	return Flottant.faire(this.getX().doubleValue()).fois(n);
+                 	
+                 }
+             }
+             throw new Exception();
+         }
+         catch (Exception e){
+             System.out.print("Operation incompatible");
+         }
         return null;
     }
-
+    
     /**
      * Divise deux nombres
      *
      * @param n
      * @return
-     */
+ */    
     @Override
     public Nombre quotient(Nombre n) {
+        try {
+             if ((n instanceof Entier)||( n instanceof Flottant)) {
+                 if(n instanceof Entier)
+                     return Entier.faire((this.x / ((Entier) n).getX()));
+                 else
+                 {
+                 	return Flottant.faire(this.getX().doubleValue()).quotient(n);
+                 	
+                 }
+             }
+             throw new Exception();
+         }
+         catch (Exception e){
+             System.out.print("Operation incompatible");
+         }
         return null;
     }
+    
+	
 }

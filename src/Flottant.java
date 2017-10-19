@@ -32,6 +32,9 @@ public final class Flottant implements Nombre{
             if (n instanceof Flottant || n instanceof Entier) {
                 if (n instanceof Flottant)
                     return Flottant.faire((this.x + ((Flottant) n).getX()));
+                else{
+                    return this.plus(Flottant.faire(((Entier)n).getX().doubleValue()));
+                }
             }
             else
                 throw new Exception();
@@ -53,6 +56,9 @@ public final class Flottant implements Nombre{
             if (n instanceof Flottant || n instanceof Entier) {
                 if (n instanceof Flottant)
                     return Flottant.faire((this.x - ((Flottant) n).getX()));
+                else{
+                    return this.moins(Flottant.faire(((Entier)n).getX().doubleValue()));
+                }
             }
             else
                 throw new Exception();
@@ -74,6 +80,9 @@ public final class Flottant implements Nombre{
             if (n instanceof Flottant || n instanceof Entier) {
                 if (n instanceof Flottant)
                     return Flottant.faire((this.x * ((Flottant) n).getX()));
+                else{
+                    return this.fois(Flottant.faire(((Entier)n).getX().doubleValue()));
+                }
             }
             else
                 throw new Exception();
@@ -95,6 +104,9 @@ public final class Flottant implements Nombre{
             if (n instanceof Flottant || n instanceof Entier) {
                 if (n instanceof Flottant)
                     return Flottant.faire((this.x / ((Flottant) n).getX()));
+                else{
+                    return this.quotient(Flottant.faire(((Entier)n).getX().doubleValue()));
+                }
             }
             else
                 throw new Exception();

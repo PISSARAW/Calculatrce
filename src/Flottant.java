@@ -1,13 +1,13 @@
-public class Flottant implements Nombre {
-    private final double x;
+public final class Flottant implements Nombre{
+    private final Double x;
 
     private Flottant(double y) {
         x = y;
     }
 
     public static Flottant faire(double y) {
-       Flottant  x =null ;
-    		   x = new Flottant(y);
+        Flottant x=null;
+        x = new Flottant(y);
         return x;
     }
 
@@ -19,7 +19,7 @@ public class Flottant implements Nombre {
     public double getX() {
         return x;
     }
-//*************************
+
     /**
      * Additione deux nombres
      *
@@ -28,38 +28,12 @@ public class Flottant implements Nombre {
      */
     @Override
     public Nombre plus(Nombre n) {
-        try {
-            if (n instanceof Flottant || n instanceof Entier) {
-                if (n instanceof Flottant)
-                    return Flottant.faire((this.x + ((Flottant) n).getX()));
-<<<<<<< HEAD
-                else{
-                    return this.plus(Flottant.faire(((Entier)n).getX().doubleValue()));
-                }
-=======
-                else
-                {
-                 	return this.plus(Flottant.faire(((Entier)n).getX().doubleValue()));
-                 	
-                 }
->>>>>>> origin/master
-            }
-            else
-                throw new Exception();
-        } catch (Exception e) {
-            System.out.print("Opération incompatible");
-        }
-        return null;
+        if (n instanceof Flottant)
+            return Flottant.faire(this.x+((Flottant) n).getX());
+        else if (n instanceof Entier)
+            return Flottant.faire(this.x+(double)((Entier) n).getX());
+        return n.plus(this);
     }
-
-    /**
-     * Soustrait deux nombres
-     *
-     * @param n
-     * @return
-     */
-   
-//*************************
 
     /**
      * Soustrait deux nombres
@@ -69,28 +43,7 @@ public class Flottant implements Nombre {
      */
     @Override
     public Nombre moins(Nombre n) {
-        try {
-            if (n instanceof Flottant || n instanceof Entier) {
-                if (n instanceof Flottant)
-                    return Flottant.faire((this.x - ((Flottant) n).getX()));
-<<<<<<< HEAD
-                else{
-                    return this.moins(Flottant.faire(((Entier)n).getX().doubleValue()));
-                }
-=======
-                else
-                {
-                 	return this.moins(Flottant.faire(((Entier)n).getX().doubleValue()));
-                 	
-                 }
->>>>>>> origin/master
-            }
-            else
-                throw new Exception();
-        } catch (Exception e) {
-            System.out.print("Opération incompatible");
-        }
-        return null;
+       return this.plus(n.oppose());
     }
 
     /**
@@ -101,28 +54,11 @@ public class Flottant implements Nombre {
      */
     @Override
     public Nombre fois(Nombre n) {
-        try {
-            if (n instanceof Flottant || n instanceof Entier) {
-                if (n instanceof Flottant)
-                    return Flottant.faire((this.x * ((Flottant) n).getX()));
-<<<<<<< HEAD
-                else{
-                    return this.fois(Flottant.faire(((Entier)n).getX().doubleValue()));
-                }
-=======
-                else
-                {
-                 	return this.fois(Flottant.faire(((Entier)n).getX().doubleValue()));
-                 	
-                 }
->>>>>>> origin/master
-            }
-            else
-            	throw new Exception();
-        } catch (Exception e) {
-            System.out.print("Opération incompatible");
-        }
-        return null;
+        if (n instanceof Flottant)
+            return Flottant.faire(this.x*((Flottant) n).getX());
+        else if (n instanceof Entier)
+            return Flottant.faire(this.x*(double)((Entier) n).getX());
+        return n.fois(this);
     }
 
     /**
@@ -133,58 +69,26 @@ public class Flottant implements Nombre {
      */
     @Override
     public Nombre quotient(Nombre n) {
-        try {
-            if (n instanceof Flottant || n instanceof Entier) {
-                if (n instanceof Flottant)
-                    return Flottant.faire((this.x / ((Flottant) n).getX()));
-<<<<<<< HEAD
-                else{
-                    return this.quotient(Flottant.faire(((Entier)n).getX().doubleValue()));
-                }
-=======
-                else
-                {
-                 	return this.quotient(Flottant.faire(((Entier)n).getX().doubleValue()));
-                 	
-                 }
->>>>>>> origin/master
-            }
-            else
-                throw new Exception();
-        } catch (Exception e) {
-            System.out.print("Opération incompatible");
-        }
-        return null;
-    }
-    /*
-    @Override
-    public Object invese() {
-        return null;
+        return this.fois(n.inverse());
     }
 
+    /**
+     * Inverse in nombre
+     *
+     * @return
+     */
     @Override
-    public Object factorielle() {
-        return null;
+    public Nombre inverse() {
+        return Flottant.faire(1/this.getX());
     }
 
+    /**
+     * Renvoie l'opposé d'un nombre
+     *
+     * @return
+     */
     @Override
-    public Object oppose() {
-        return null;
+    public Nombre oppose() {
+        return Flottant.faire(-(this.getX()));
     }
-
-    @Override
-    public Object puissance2() {
-        return null;
-    }
-
-    @Override
-    public Object exponentielle() {
-        return null;
-    }
-
-    @Override
-    public Object racineCarre() {
-        return null;
-    }
-    */
 }

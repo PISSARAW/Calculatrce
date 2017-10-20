@@ -1,19 +1,16 @@
-public class Inconnue {
-    Character inc;
-    public Inconnue(char c){
-        inc=c;
-    }
+public class Inconnue{
+    private Character nom;
 
-    public Character getInc() {
-        return inc;
-    }
-
-    public void setInc(Character inc) {
-        this.inc = inc;
+    public Inconnue(Character nom) {
+        this.nom = nom;
     }
 
     @Override
     public String toString() {
-        return ""+ inc;
+        return ""+nom;
+    }
+
+    public Character getNom() {
+        return nom;
     }
 }

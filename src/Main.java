@@ -1,7 +1,12 @@
+import java.util.LinkedList;
+
 public class Main {
+
+
 
     public static void main(String[] args) {
 	// write your code here
+        /*
         Nombre f = Flottant.faire(12.5);
         Nombre n = Flottant.faire(100.2);
         Nombre e= Flottant.faire(5);
@@ -44,6 +49,10 @@ public class Main {
         Expression ex= new Expression(Entier.faire(25),x,Entier.faire(3),"+");
         System.out.println(ex);
         System.out.println(ex.subt((Nombre) Entier.faire(-2)));
-
+*/
+        //Calculatrice ca = new Calculatrice();
+        //System.out.print(ca.operande("8"));
+        Calculatrice c = new Calculatrice();
+        c.lancer();
     }
 }

@@ -24,4 +24,19 @@ public interface Nombre {
      */
     public Nombre quotient (Nombre n);
 
+    /**
+     * Inverse in nombre
+     * @return
+     */
+    public Nombre inverse();
+
+    /**
+     * Renvoie l'opposé d'un nombre
+     * @return
+     */
+    public Nombre oppose();
+
+
+
+
 }

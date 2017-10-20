@@ -57,8 +57,21 @@ public final class Rationnel implements Nombre{
      */
     @Override
     public Nombre plus(Nombre n) {
-        return null;
+    	
+             if ((n instanceof Entier)||( n instanceof Flottant)) {
+                 if(n instanceof Flottant)
+                 {
+                	 return (Flottant.faire(((Flottant) n).getX() + (double)((double)this.getNum()/(double)this.getDen())));
+                 }
+                 else
+                 {
+                	return  (Rationnel.faire(this.getNum()+(this.getDen()*(((Entier) n).getX())),this.getDen())); 
+                 }
+             }
+             System.out.print("Operation incompatible");
+    	return null;
     }
+    
 
     /**
      * Soustrait deux nombres
@@ -68,7 +81,7 @@ public final class Rationnel implements Nombre{
      */
     @Override
     public Nombre moins(Nombre n) {
-        return null;
+        return this.plus(n.oppose());
     }
 
     /**
@@ -106,4 +119,9 @@ public final class Rationnel implements Nombre{
     public Nombre inverse() {
         return Rationnel.faire(this.getDen(),this.getNum());
     }
+    
+    	public Nombre oppose() {
+		
+		return Rationnel.faire(- getNum(),getDen());
+	}
 }

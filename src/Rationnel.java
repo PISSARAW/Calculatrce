@@ -7,7 +7,7 @@ public final class Rationnel implements Nombre{
         this.den = den;
     }
 
-    public static Rationnel faire(long n, long d){
+       public static Rationnel faire(long n, long d){
     	Rationnel r;
     	try{
             if(d!=0.0&&Rationnel.coprem(n, d)==1){
@@ -18,12 +18,16 @@ public final class Rationnel implements Nombre{
                 r = new Rationnel(n, d);
                 return r;
             }
-            else
+            else if(Rationnel.coprem(n,d)!= 1)
+            {
+            	return Rationnel.faire(n/(Rationnel.coprem(n,d)),d/(Rationnel.coprem(n,d)))	;
+            }
                 throw new Exception();
         }
         catch (Exception e){
         	
-        	return Rationnel.faire(n/d,1)	;
+        	
+        		return Rationnel.faire(n/d,1)	;
         }
         
     }

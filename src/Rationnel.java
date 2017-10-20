@@ -8,24 +8,24 @@ public final class Rationnel implements Nombre{
     }
 
     public static Rationnel faire(long n, long d){
-        try{
-            Rationnel r=null;
+    	Rationnel r;
+    	try{
             if(d!=0.0&&Rationnel.coprem(n, d)==1){
                 if(d<0){
                     d=d+(-d*2);
                     n=n-(n*2);
                 }
-                r = new Rationnel(n,d);
+                r = new Rationnel(n, d);
                 return r;
             }
             else
                 throw new Exception();
         }
         catch (Exception e){
-            System.out.println(" Nombre Rationnel impossible");
-            System.out.println(n + " n | d "+ d);
+        	
+        	return Rationnel.faire(n/d,1)	;
         }
-        return null;
+        
     }
 
     public static long coprem(long a, long b){
@@ -57,19 +57,19 @@ public final class Rationnel implements Nombre{
      */
     @Override
     public Nombre plus(Nombre n) {
-    	
-             if ((n instanceof Entier)||( n instanceof Flottant)) {
                  if(n instanceof Flottant)
                  {
                 	 return (Flottant.faire(((Flottant) n).getX() + (double)((double)this.getNum()/(double)this.getDen())));
                  }
-                 else
+                 else if(n instanceof Entier)
                  {
                 	return  (Rationnel.faire(this.getNum()+(this.getDen()*(((Entier) n).getX())),this.getDen())); 
                  }
-             }
-             System.out.print("Operation incompatible");
-    	return null;
+                 else
+                 {
+                	 return Rationnel.faire(getNum()*((Rationnel) n).getDen() + getDen()*((Rationnel) n).getNum(),getDen()* ((Rationnel) n).getDen());
+                 }
+           
     }
     
 

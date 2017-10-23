@@ -1,4 +1,4 @@
-public final class Flottant implements Nombre{
+public final class Flottant extends Expression implements Nombre{
     private final Double x;
 
     private Flottant(double y) {
@@ -28,20 +28,11 @@ public final class Flottant implements Nombre{
      */
     @Override
     public Nombre plus(Nombre n) {
-        try {
-            if (n instanceof Flottant || n instanceof Entier) {
-                if (n instanceof Flottant)
-                    return Flottant.faire((this.x + ((Flottant) n).getX()));
-                else{
-                    return this.plus(Flottant.faire(((Entier)n).getX().doubleValue()));
-                }
-            }
-            else
-                throw new Exception();
-        } catch (Exception e) {
-            System.out.print("Opération incompatible");
-        }
-        return null;
+        if (n instanceof Flottant)
+            return Flottant.faire(this.x+((Flottant) n).getX());
+        else if (n instanceof Entier)
+            return Flottant.faire(this.x+(double)((Entier) n).getX());
+        return n.plus(this);
     }
 
     /**
@@ -52,20 +43,7 @@ public final class Flottant implements Nombre{
      */
     @Override
     public Nombre moins(Nombre n) {
-        try {
-            if (n instanceof Flottant || n instanceof Entier) {
-                if (n instanceof Flottant)
-                    return Flottant.faire((this.x - ((Flottant) n).getX()));
-                else{
-                    return this.moins(Flottant.faire(((Entier)n).getX().doubleValue()));
-                }
-            }
-            else
-                throw new Exception();
-        } catch (Exception e) {
-            System.out.print("Opération incompatible");
-        }
-        return null;
+       return this.plus(n.oppose());
     }
 
     /**
@@ -76,20 +54,11 @@ public final class Flottant implements Nombre{
      */
     @Override
     public Nombre fois(Nombre n) {
-        try {
-            if (n instanceof Flottant || n instanceof Entier) {
-                if (n instanceof Flottant)
-                    return Flottant.faire((this.x * ((Flottant) n).getX()));
-                else{
-                    return this.fois(Flottant.faire(((Entier)n).getX().doubleValue()));
-                }
-            }
-            else
-                throw new Exception();
-        } catch (Exception e) {
-            System.out.print("Opération incompatible");
-        }
-        return null;
+        if (n instanceof Flottant)
+            return Flottant.faire(this.x*((Flottant) n).getX());
+        else if (n instanceof Entier)
+            return Flottant.faire(this.x*(double)((Entier) n).getX());
+        return n.fois(this);
     }
 
     /**
@@ -100,20 +69,7 @@ public final class Flottant implements Nombre{
      */
     @Override
     public Nombre quotient(Nombre n) {
-        try {
-            if (n instanceof Flottant || n instanceof Entier) {
-                if (n instanceof Flottant)
-                    return Flottant.faire((this.x / ((Flottant) n).getX()));
-                else{
-                    return this.quotient(Flottant.faire(((Entier)n).getX().doubleValue()));
-                }
-            }
-            else
-                throw new Exception();
-        } catch (Exception e) {
-            System.out.print("Opération incompatible");
-        }
-        return null;
+        return this.fois(n.inverse());
     }
 
     /**

@@ -1,4 +1,4 @@
-public final class Rationnel implements Nombre{
+public final class Rationnel extends Expression implements Nombre {
     private final Long num;
     private final Long den;
 
@@ -7,29 +7,55 @@ public final class Rationnel implements Nombre{
         this.den = den;
     }
 
-       public static Rationnel faire(long n, long d){
-    	Rationnel r;
-    	try{
+
+
+
+    public static Rationnel faire(long n, long d){
+
+        Rationnel r;
+
+        try{
+
             if(d!=0.0&&Rationnel.coprem(n, d)==1){
+
                 if(d<0){
+
                     d=d+(-d*2);
+
                     n=n-(n*2);
+
                 }
+
                 r = new Rationnel(n, d);
+
                 return r;
+
             }
+
             else if(Rationnel.coprem(n,d)!= 1)
+
             {
-            	return Rationnel.faire(n/(Rationnel.coprem(n,d)),d/(Rationnel.coprem(n,d)))	;
+
+                return Rationnel.faire(n/(Rationnel.coprem(n,d)),d/(Rationnel.coprem(n,d)))	;
+
             }
-                throw new Exception();
+
+            throw new Exception();
+
         }
+
         catch (Exception e){
-        	
-        	
-        		return Rationnel.faire(n/d,1)	;
+
+
+
+
+
+            return Rationnel.faire(n/d,1)	;
+
         }
-        
+
+
+
     }
 
     public static long coprem(long a, long b){
@@ -60,22 +86,22 @@ public final class Rationnel implements Nombre{
      * @return
      */
     @Override
+
     public Nombre plus(Nombre n) {
-                 if(n instanceof Flottant)
-                 {
-                	 return (Flottant.faire(((Flottant) n).getX() + (double)((double)this.getNum()/(double)this.getDen())));
-                 }
-                 else if(n instanceof Entier)
-                 {
-                	return  (Rationnel.faire(this.getNum()+(this.getDen()*(((Entier) n).getX())),this.getDen())); 
-                 }
-                 else
-                 {
-                	 return Rationnel.faire(getNum()*((Rationnel) n).getDen() + getDen()*((Rationnel) n).getNum(),getDen()* ((Rationnel) n).getDen());
-                 }
-           
+        if(n instanceof Flottant)
+        {
+            return (Flottant.faire(((Flottant) n).getX() + (double)((double)this.getNum()/(double)this.getDen())));
+        }
+        else if(n instanceof Entier)
+        {
+            return  (Rationnel.faire(this.getNum()+(this.getDen()*(((Entier) n).getX())),this.getDen()));
+        }
+        else
+        {
+            return Rationnel.faire(getNum()*((Rationnel) n).getDen() + getDen()*((Rationnel) n).getNum(),getDen()* ((Rationnel) n).getDen());
+        }
+
     }
-    
 
     /**
      * Soustrait deux nombres
@@ -123,9 +149,14 @@ public final class Rationnel implements Nombre{
     public Nombre inverse() {
         return Rationnel.faire(this.getDen(),this.getNum());
     }
-    
-    	public Nombre oppose() {
-		
-		return Rationnel.faire(- getNum(),getDen());
-	}
+
+    /**
+     * Renvoie l'opposé d'un nombre
+     *
+     * @return
+     */
+    @Override
+    public Nombre oppose() {
+        return Rationnel.faire(-getNum(),getDen());
+    }
 }

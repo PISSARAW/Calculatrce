@@ -1,4 +1,4 @@
-public final class Flottant implements Nombre{
+public final class Flottant extends Expression implements Nombre{
     private final Double x;
 
     private Flottant(double y) {

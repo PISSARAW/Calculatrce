@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.function.Predicate;
 
 public class Main {
 
@@ -54,5 +55,16 @@ public class Main {
         //System.out.print(ca.operande("8"));
         Calculatrice c = new Calculatrice();
         c.lancer();
+        /**LinkedList<Object> p = new LinkedList<>();
+        p.push(6);
+        p.push('s');
+        p.push(2.5);
+        System.out.println(p.contains('s'));
+        System.out.println(p.contains('t'));
+        System.out.println(p.contains('e'));
+        int n =6;
+        Inconnue i=new Inconnue('a');
+        p.removeIf(predicate)
+*/
     }
 }

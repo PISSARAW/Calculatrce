@@ -1,5 +1,6 @@
-public class Inconnue{
+public class Inconnue extends Expression{
     private Character nom;
+    private Nombre coef;
 
     public Inconnue(Character nom) {
         this.nom = nom;
@@ -13,4 +14,5 @@ public class Inconnue{
     public Character getNom() {
         return nom;
     }
+
 }

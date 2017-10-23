@@ -1,4 +1,4 @@
-public final class Entier implements Nombre{
+public final class Entier extends Expression implements Nombre{
     private final Long x;
 
     private Entier (long y){

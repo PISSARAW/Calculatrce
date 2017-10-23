@@ -36,7 +36,7 @@ public class Calculatrice {
             return 1;
         else if (Pattern.matches("[0-9]*\\/[1-9]+", (String)s))
             return 2;
-        else if(Pattern.matches("[0-9]*",s))
+        else if(Pattern.matches("-*[0-9]*",s))
             return 3;
         else if(Pattern.matches("[a-z]",s))
             return 4;
@@ -50,81 +50,49 @@ public class Calculatrice {
      */
     public boolean operande(String s) {
         if (!s.equals("+") && !s.equals("-") && !s.equals("*") && !s.equals("/")&&!s.equals("exit")) {
-            if (!s.equals("!") && !s.equals("%") && !s.equals("^") && !s.equals("all")) {
-                if (!s.equals("sqrt") && !s.equals("abs") && !s.equals("inv")&&!s.equals("opp"))
+            if (!s.equals("!") && !s.equals("%") && !s.equals("^") && !s.equals("tout")) {
+                if (!s.equals("sortir") && !s.equals("nettoyer") && !s.equals("inv")&&!s.equals("opp"))
                     return false;
             }
         }
         return true;
     }
 
-    public void calculNombre(String s){
-        if (liste.size()>=2) {
-            Object x=liste.pop();
-            System.out.println("1 "+x.getClass());
-            Object y;
-            Expression expression = new Expression();
-            if(x instanceof Nombre){
-                System.out.println("2 "+x.getClass());
+    public void calculintern(String s){
+        Object x;
+        Object y;
+        Nombre n;
+        Expression e=new Expression();
+        if(liste.size()>=2) {
+            if(s.equals("+")||s.equals("-")||s.equals("*")||s.equals("/")){
+                    x = liste.pop();
+                    y = liste.pop();
+                    if (!(x instanceof Nombre) || ((x instanceof Nombre) && (!(y instanceof Nombre)))) {
+                        e.operation(x, s, y);
+                        liste.push(e);
+                    } else {
+                        switch (s){
+                            case "+":
+                                n = ((Nombre) x).plus((Nombre) y);
+                                liste.push(n);
+                                break;
+                            case "-":
+                                n = ((Nombre) x).moins((Nombre) y);
+                                liste.push(n);
+                                break;
+                            case "*":
+                                n = ((Nombre) x).fois((Nombre) y);
+                                liste.push(n);
+                                break;
+                            case "/":
+                                n = ((Nombre) x).quotient((Nombre) y);
+                                liste.push(n);
+                                break;
+                        }
 
-                switch (s){
-                    case "+":
-                        y=liste.pop();
-                        System.out.println(y);
-                        if(y instanceof Nombre){
-                            Nombre n = ((Nombre) x).plus((Nombre) y);
-                            System.out.println(n);
-                            liste.push(n);
-                        }
-                        else{
-                            System.out.println(y);
-                            expression.getExpr().push(x);
-                            expression.getExpr().push(s);
-                            expression.getExpr().push(y);
-                            System.out.print(expression);
-                            liste.push(expression);
-                        }
-                        break;
-                    case "-":
-                        y=liste.pop();
-                        if(y instanceof Nombre) {
-                            Nombre n = ((Nombre) x).moins((Nombre) y);
-                            System.out.println(n);
-                            liste.push(n);
-                        }
-                        break;
-                    case "*":
-                        y=liste.pop();
-                        if(y instanceof Nombre){
-                            Nombre n = ((Nombre) x).fois((Nombre) y);
-                            System.out.println(n);
-                            liste.push(n);
-                        }
-                        break;
-                    case "/":
-                        y=liste.pop();
-                        if(y instanceof Nombre){
-                            Nombre n = ((Nombre) x).quotient((Nombre) y);
-                            System.out.println(n);
-                            liste.push(n);
-                        }
-                        break;
-                    case "inv":
-                        Nombre n = ((Nombre) x).inverse();
-                        System.out.println(n);
-                        liste.push(n);
-                        break;
-                    case "opp":
-                        n = ((Nombre) x).oppose();
-                        System.out.println(n);
-                        liste.push(n);
-                        break;
-                    default:
-                        liste.push(x);
-                }
+                    }
             }
         }
-
     }
 
     public void calcul(String s){
@@ -158,22 +126,27 @@ public class Calculatrice {
                 }
 
             }
-            this.calculNombre(se);
+            this.calculintern(se);
             this.commande(se);
         }
-        this.commande("all");
+        //this.commande("tout");
 
     }
     public void commande(String s){
         switch (s){
-            case "all":
+            case "tout":
                 for (Object x:liste
                      ) {
                     System.out.print(x+"  ");
                 }
                 System.out.println();
                 break;
-            case "exit":
+            case "nettoyer":
+                liste.clear();
+                break;
+            case "subt":
+
+            case "sortir":
                 exit(0);
         }
     }

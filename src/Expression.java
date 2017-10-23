@@ -25,4 +25,10 @@ public class Expression {
         s+=")";
         return s;
     }
+
+    public void operation (Object x, Object y, Object z){
+        expr.push(x);
+        expr.push(y);
+        expr.push(z);
+    }
 }

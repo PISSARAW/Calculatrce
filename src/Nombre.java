@@ -1,4 +1,4 @@
-public interface Nombre {
+public interface Nombre{
     /**
      * Additione deux nombres
      * @param n

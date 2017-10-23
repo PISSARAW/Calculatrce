@@ -1,4 +1,4 @@
-public final class Rationnel implements Nombre{
+public final class Rationnel extends Expression implements Nombre {
     private final Long num;
     private final Long den;
 
